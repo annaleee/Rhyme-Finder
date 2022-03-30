@@ -2,7 +2,7 @@
   "name": "rhyme-finder-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "rhyme-finder-app/src",
+  "homepage": "https://annaleee.github.io/Rhyme-Finder/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
