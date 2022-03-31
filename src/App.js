@@ -133,7 +133,7 @@ class Result extends React.Component {
           )
         }
         Object.keys(items).map((keys)=>{
-          lists.push(<SaveButton word ={items[keys].word}/>);
+          lists.push(<SaveButton  clickHandler={(words)=>this.clickHandler(words)} word ={items[keys].word}/>);
         })
         return(
           <div>
