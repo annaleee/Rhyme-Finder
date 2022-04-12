@@ -59,7 +59,6 @@ class SaveButton extends React.PureComponent {
     }
   }
   render(){
-    console.log("HER");
     return(
       <div>
         {this.props.word}<button onClick={this.saveHandler}>{this.state.is_clicked?"saved":"save"}</button>
@@ -119,7 +118,7 @@ class Result extends React.Component {
           <div>
             <p>{word}</p>
             <ul>
-              {lists.map((nums,idx)=>{return(<li key={idx}>{nums}</li>)})}
+              {lists.map((nums,idx)=>{return(<li key={nums}>{nums}</li>)})}
             </ul>
           </div>
         )
@@ -133,7 +132,7 @@ class Result extends React.Component {
           )
         }
         Object.keys(items).map((keys)=>{
-          lists.push(<SaveButton  clickHandler={(words)=>this.clickHandler(words)} word ={items[keys].word}/>);
+          lists.push(<SaveButton  key={this.props.word} clickHandler={(words)=>this.clickHandler(words)} word ={items[keys].word}/>);
         })
         return(
           <div>
@@ -201,9 +200,10 @@ class Panel extends React.Component {
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
         <h1>Rhyme Finder(SI 579 Problem Set 6)</h1>
       </header>
+      <a href="https://github.com/annaleee/Rhyme-Finder" >Link of my repo</a>
       <Panel className="panel"></Panel>
     </div>
   );
