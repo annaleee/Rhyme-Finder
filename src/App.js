@@ -96,6 +96,7 @@ class Result extends React.Component {
   // Typical usage (don't forget to compare props):
     if(this.props.result !== prevProps.result||this.props.is_rhythm !== prevProps.is_rhythm){
       this.getData();
+      this.setState({is_loaded:false});
     }
   }
   render(){
