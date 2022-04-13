@@ -104,7 +104,7 @@ class Result extends React.Component {
     if(this.props.result == ""){
       return <p></p>;
     }
-    const {items,is_loaded} = this.state;
+    const {items,is_loaded} = this.state;     
     let word = this.props.is_rhythm?`Words that rhyme with ${this.props.result}`:`Words with a meaning similar to ${this.props.result}`;
     let lists = []
     if(!is_loaded){
