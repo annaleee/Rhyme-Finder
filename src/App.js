@@ -70,26 +70,31 @@ class Result extends React.Component {
   constructor(props) {
     super(props);
     this.state = {items:[],is_loaded:false};
+    console.log("is created");
   }
   clickHandler(word){
     this.props.onSave(word);
   }
-  componentDidUpdate(prevProps) {
-  // Typical usage (don't forget to compare props):
-    if (this.props.result !== prevProps.result) {
+
+  getData(){
     fetch(this.props.is_rhythm?getDatamuseRhymeUrl(this.props.result):getDatamuseSimilarToUrl(this.props.result))
         .then((response) => response.json())
         .then((data) => {
             this.setState({
               items:data,
               is_loaded:true});
-              this.render();
         }, (err) => {
             console.error(err);
         });
+  }
+  componentDidUpdate(prevProps) {
+  // Typical usage (don't forget to compare props):
+    if(this.props.result !== prevProps.result||this.props.is_rhythm !== prevProps.is_rhythm){
+      this.getData();
     }
   }
   render(){
+    
     if(this.props.result == ""){
       return <p></p>;
     }
@@ -118,7 +123,7 @@ class Result extends React.Component {
           <div>
             <p>{word}</p>
             <ul>
-              {lists.map((nums,idx)=>{return(<li key={nums}>{nums}</li>)})}
+              {lists.map((nums,idx)=>{return(<li key={nums+idx}>{nums}</li>)})}
             </ul>
           </div>
         )
@@ -138,7 +143,7 @@ class Result extends React.Component {
           <div>
             <p>{word}</p>
             <ul>
-              {lists.map((nums,idx)=>{return(<li key={idx}>{nums}</li>)})}
+              {lists.map((nums,idx)=>{return(<li key={nums+idx}>{nums}</li>)})}
             </ul>
           </div>
         )
@@ -168,7 +173,6 @@ class Panel extends React.Component {
   handleWords(event){
     this.setState({is_rhythm:true,result:this.state.value});
     this.setState({value:""});
-
     event.preventDefault();
   }
   componentDidUpdate(){
