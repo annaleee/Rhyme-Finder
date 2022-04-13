@@ -58,6 +58,11 @@ class SaveButton extends React.PureComponent {
       this.props.clickHandler(this.props.word);
     }
   }
+  componentDidUpdate(prevProps){
+    if(prevProps.word!==this.props.word){
+      this.setState({is_clicked:false});
+    }
+  }
   render(){
     return(
       <div>
